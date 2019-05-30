@@ -1,6 +1,4 @@
-<p align="center">
 ![logo](public/logo.jpg)
-</p>
 # jaspit
 Simple Jasper Report rendering engine
 
