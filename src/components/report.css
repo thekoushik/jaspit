@@ -1,0 +1,27 @@
+
+.page-container{
+    /* overflow: auto; */
+    float: left;
+}
+.page{
+    /* position: absolute; */
+}
+.page-container .page:not(:last-child){
+    margin-bottom: 12px;
+}
+.element{
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    table-layout: fixed;
+}
+.element *{
+    margin: 0px;
+    padding: 0px;
+    /* white-space: nowrap; */
+    overflow: hidden;
+}
+.line{
+    background-color: black;
+}
