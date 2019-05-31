@@ -8,13 +8,13 @@ Simple report rendering library based on Jasper Report
 
 <script type="text/javascript" src="jaspit.bundle.min.js"></script>
 <script>
-Jaspit.init({
+Jaspit.render({
 	dom_id:"report",
 	fetch:true,//if true, the following two parameters will be taken as URL
-	jrxml:"/invoice.jrxml",
-	json:"/invoice.json",
+	design:"/invoice.jrxml",
+	data:"/invoice.json",
 	param:{logo1:'/logo.jpg'},
-	done:function(){
+	done:function(){//will be called when render is complete
 		//uncomment to print from browser
 		//print();
 	}
