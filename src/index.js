@@ -4,11 +4,14 @@ import {xml2js} from 'xml-js';
 import './index.css';
 //import App from './App';
 //import * as serviceWorker from './serviceWorker';
-import Loader from './components/loader';
+import components from './components';
 
-export function init(settings){
-    //ReactDOM.render(<App />, document.getElementById('root'));
-    ReactDOM.render(<Loader settings={settings} converter={convert} />,document.getElementById(settings.dom_id))
+export function render(settings){
+    ReactDOM.render(<components.Viewer settings={settings} converter={convert} />,document.getElementById(settings.dom_id))
+}
+
+export function edit(settings){
+    ReactDOM.render(<components.Editor settings={settings} />,document.getElementById(settings.dom_id))
 }
 
 export function convert(jrxml){

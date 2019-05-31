@@ -22,11 +22,23 @@
     -->
     <script>
       window.onload=function(){
-        Jaspit.init({
+        /** edit **/
+        /*fetch("/invoice.jrxml")
+        .then(function(data){return data.text()})
+        .then(function(jrxml){return Jaspit.convert(jrxml)})
+        .then(function(json){
+          Jaspit.edit({
+              dom_id:"root",
+              design:json
+          })
+        });
+        return;*/
+        /*** view ***/
+        Jaspit.render({
             dom_id:"root",
             fetch:true,
-            jrxml:"/invoice.jrxml",
-            json:"/invoice.json",
+            design:"/invoice.jrxml",
+            data:"/invoice.json",
             param:{logo1:'/logo.jpg'},
             done:function(){
               //uncomment to print from browser

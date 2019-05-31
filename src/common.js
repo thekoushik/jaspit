@@ -1,4 +1,5 @@
 export const Common={
+    edit:false,
     design:{},
     data:{},
     dataset:{},

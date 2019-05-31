@@ -2814,88 +2814,93 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{footer_address2}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="274" y="63" width="117" height="11" uuid="57558e2a-6991-447b-b26f-a363d8595e01"/>
-				<textElement>
-					<font size="7"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{iban_micr_no_3}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="219" y="52" width="45" height="11" uuid="c0c6d2b6-358d-4978-a4d4-914e1f7198a9">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<frame>
+				<reportElement key="" x="219" y="3" width="172" height="71" uuid="f97564ab-ee28-4a52-b536-323884d6b723">
+					<printWhenExpression><![CDATA[!$F{bank_name2}.equals("")]]></printWhenExpression>
 				</reportElement>
-				<textElement>
-					<font size="7"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[IF($F{swift_ifsc_1}=="true","Swift Code","IFSC Code")]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="219" y="63" width="45" height="11" uuid="2264b5b5-21ff-4b35-ba25-2d93bb95ed4d"/>
-				<textElement>
-					<font size="7"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[IF($F{iban_micr_3}=="true","IBAN No.","MICR No.")]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="219" y="3" width="172" height="12" uuid="512a07a2-fc95-448b-9b77-ea9375b2d870"/>
-				<textElement>
-					<font size="7"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{bank_name2}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="219" y="15" width="172" height="11" uuid="f3b54fc7-fa13-4a57-99fc-48cc1f34650f">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<textElement>
-					<font size="7"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{name_5}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="219" y="41" width="45" height="11" uuid="046acc03-9920-43a0-8ef2-4a539613db32">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<textElement>
-					<font size="7" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Account No. "]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="274" y="52" width="117" height="11" uuid="e83d64dd-043d-486a-b680-4251b272dd6b"/>
-				<textElement>
-					<font size="7"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{swift_ifsc_code_1}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="219" y="26" width="172" height="15" uuid="5ca26a9d-46b3-4159-8f88-dbb527358af8"/>
-				<textElement>
-					<font size="7"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{address_4}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="274" y="41" width="117" height="11" uuid="6fcf433f-f9f8-40ea-9d15-0f7d80552a0f">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<textElement>
-					<font size="7"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{account_2}]]></textFieldExpression>
-			</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="55" y="60" width="117" height="11" uuid="57558e2a-6991-447b-b26f-a363d8595e01"/>
+					<textElement>
+						<font size="7"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{iban_micr_no_3}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="49" width="45" height="11" uuid="c0c6d2b6-358d-4978-a4d4-914e1f7198a9">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font size="7"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[IF($F{swift_ifsc_1}=="true","Swift Code","IFSC Code")]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="60" width="45" height="11" uuid="2264b5b5-21ff-4b35-ba25-2d93bb95ed4d"/>
+					<textElement>
+						<font size="7"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[IF($F{iban_micr_3}=="true","IBAN No.","MICR No.")]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="0" width="172" height="12" uuid="512a07a2-fc95-448b-9b77-ea9375b2d870"/>
+					<textElement>
+						<font size="7"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{bank_name2}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="12" width="172" height="11" uuid="f3b54fc7-fa13-4a57-99fc-48cc1f34650f">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font size="7"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{name_5}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="38" width="45" height="11" uuid="046acc03-9920-43a0-8ef2-4a539613db32">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font size="7" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Account No. "]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="55" y="49" width="117" height="11" uuid="e83d64dd-043d-486a-b680-4251b272dd6b"/>
+					<textElement>
+						<font size="7"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{swift_ifsc_code_1}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="23" width="172" height="15" uuid="5ca26a9d-46b3-4159-8f88-dbb527358af8"/>
+					<textElement>
+						<font size="7"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{address_4}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="55" y="38" width="117" height="11" uuid="6fcf433f-f9f8-40ea-9d15-0f7d80552a0f">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font size="7"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{account_2}]]></textFieldExpression>
+				</textField>
+			</frame>
 		</band>
 	</lastPageFooter>
 </jasperReport>

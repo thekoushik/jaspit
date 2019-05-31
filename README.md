@@ -1,6 +1,6 @@
 ![logo](public/logo.jpg)
 # jaspit
-Simple Jasper Report rendering engine
+Simple report rendering library based on Jasper Report
 
 # Usage
 ```

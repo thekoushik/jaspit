@@ -1,7 +1,7 @@
 {
   "name": "jaspit",
   "version": "0.0.1",
-  "description": "Simple jasper report rendering engine",
+  "description": "Simple report rendering library based on Jasper Report",
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
@@ -19,6 +19,7 @@
     "webpack-dev-server": "^3.4.1"
   },
   "dependencies": {
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "xml-js": "^1.6.11"
