@@ -28,7 +28,8 @@
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
     "dev": "npm run webpack-dev-server -- --env.mode development",
-    "prod": "npm run webpack -- --env.mode production"
+    "prod": "npm run webpack -- --env.mode production",
+    "edev": "npm run webpack-dev-server -- --config webpack-editor.config.js --env.mode development"
   },
   "eslintConfig": {
     "extends": "react-app"

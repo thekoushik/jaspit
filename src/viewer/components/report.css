@@ -2,9 +2,10 @@
 .page-container{
     /* overflow: auto; */
     float: left;
+    background: #fff;
 }
 .page{
-    /* position: absolute; */
+    position: relative;
 }
 .page-container .page:not(:last-child){
     margin-bottom: 12px;

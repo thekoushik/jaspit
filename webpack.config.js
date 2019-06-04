@@ -3,14 +3,13 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = ({ mode } = { mode: "production" }) => {
     console.log(`mode is: ${mode}`);
-
     return {
         mode,
-        entry: "./src/index.js",
+        entry: "./src/viewer/index.js",
         output: {
             publicPath: "/",
             path: path.resolve(__dirname, "dist"),
-            filename: "jaspit.bundle.min.js",
+            filename: "jaspit-viewer.bundle.min.js",
             library: 'Jaspit',
             libraryTarget: 'umd'
         },

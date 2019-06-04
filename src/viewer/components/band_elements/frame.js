@@ -1,7 +1,7 @@
 import React from 'react';
-import bandElements from '.';
+import bandElements from '../band_elements';
 import {makeBand} from '../band';
-import {Common} from '../../common';
+import {Common} from '../common';
 
 export default function({design,data,dataset,variable}){
     let items=[];

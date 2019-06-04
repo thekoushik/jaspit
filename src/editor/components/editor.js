@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Common } from '../common';
-import Report from './report';
+import Report from './editable_report';
 
 export default class Editor extends React.Component {
     constructor(props){

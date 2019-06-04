@@ -1,5 +1,4 @@
 export const Common={
-    edit:false,
     design:{},
     data:{},
     dataset:{},
@@ -42,13 +41,15 @@ export const Common={
         verticalAlignment:'verticalAlign'
     },
     processSubDataSet(design){
-        let sub=Array.isArray(design.subDataset)?design.subDataset:[design.subDataset];
-        Common.subdatasets={};
         let result={};
-        sub.forEach(f=>{
-            result[f._attributes.name]={start:0};
-            Common.subdatasets[f._attributes.name]=Common.dataset[f._attributes.name].length || 0;
-        },{});
+        if(design.subDataset){
+            let sub=Array.isArray(design.subDataset)?design.subDataset:[design.subDataset];
+            Common.subdatasets={};
+            sub.forEach(f=>{
+                result[f._attributes.name]={start:0};
+                Common.subdatasets[f._attributes.name]=Common.dataset[f._attributes.name].length || 0;
+            },{});
+        }
         return result;
     },
     createSubDataSetFromPrevious(prev,name){
@@ -68,24 +69,25 @@ export const Common={
     },
     compileData(design,data){
         let result={};
-        design.field.forEach((f)=>{
-            if(f._attributes){
-                let name=f._attributes.name;
-                //let classname=f._attributes['class'];
-                if(f.fieldDescription){
-                    result[name]=Common.getNestedVal(data,f.fieldDescription._cdata);
-                }else{
-                    result[name]=data[name]||"";
+        if(design.field)
+            design.field.forEach((f)=>{
+                if(f._attributes){
+                    let name=f._attributes.name;
+                    //let classname=f._attributes['class'];
+                    if(f.fieldDescription){
+                        result[name]=Common.getNestedVal(data,f.fieldDescription._cdata);
+                    }else{
+                        result[name]=data[name]||"";
+                    }
                 }
-            }
-        });
+            });
         let params={};
-        let parameters=Array.isArray(design.parameter)?design.parameter:[design.parameter];
-        parameters.forEach((f)=>{
-            if(f._attributes){
-                params[f._attributes.name]=Common.param[f._attributes.name]||"";
-            }
-        });
+        if(design.parameter)
+            (Array.isArray(design.parameter)?design.parameter:[design.parameter]).forEach((f)=>{
+                if(f._attributes){
+                    params[f._attributes.name]=Common.param[f._attributes.name]||"";
+                }
+            });
         return {
             F:result,
             P:params,
@@ -213,5 +215,7 @@ export const Common={
         }
         //if()
         return result
-    }
+    },
+    ////////////////
+    complete:0
 }

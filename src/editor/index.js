@@ -1,17 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {xml2js} from 'xml-js';
-import './index.css';
+import './editor.css';
 //import App from './App';
 //import * as serviceWorker from './serviceWorker';
-import components from './components';
-
-export function render(settings){
-    ReactDOM.render(<components.Viewer settings={settings} converter={convert} />,document.getElementById(settings.dom_id))
-}
+import Editor from './components/editor';
 
 export function edit(settings){
-    ReactDOM.render(<components.Editor settings={settings} />,document.getElementById(settings.dom_id))
+    //ReactDOM.render(<Editor settings={settings} />,document.getElementById(settings.dom_id))
 }
 
 export function convert(jrxml){

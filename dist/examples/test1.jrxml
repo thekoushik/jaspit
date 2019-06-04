@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 5.5.2  -->
+<!-- 2019-06-04T12:21:38 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db25bfb1-8ac1-4b3b-acfd-97587985f1fb">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="logo1" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band height="802" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="280" height="801" uuid="c5d44980-a2df-4ef4-958d-d146e820fc58"/>
+			</line>
+			<line direction="BottomUp">
+				<reportElement mode="Opaque" x="280" y="1" width="274" height="801" uuid="de9767e9-12c9-4212-98b5-d18f42b606b7"/>
+			</line>
+			<staticText>
+				<reportElement x="230" y="390" width="100" height="30" uuid="b9d204a5-2f30-46f6-8ce1-2d2282f7a313"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Static Text]]></text>
+			</staticText>
+			<image>
+				<reportElement x="350" y="600" width="204" height="201" uuid="64d0698b-5073-44dc-b625-4a0a208c6377"/>
+				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="0a729f96-7d67-415e-a45b-bb340aeff63c"/>
+				<text><![CDATA[Top Left]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="100" height="19" uuid="1ee3f09e-8d6f-499b-973d-754bcca81db5"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Bottom Left]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="454" y="0" width="100" height="20" uuid="66eaf803-8608-4616-868c-1fe5fcbe554b"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Top Right]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="454" y="60" width="100" height="20" uuid="636da5b2-b7f5-4b80-bc72-e9f4b5b87cff"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom"/>
+				<text><![CDATA[Bottom Right]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="0" width="100" height="20" uuid="fb8941b1-aff3-4a04-ae29-871c3090178b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Top Center]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="30" width="100" height="20" uuid="0fea828d-2815-4f21-9412-c7241a322a96"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Middle Center]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="59" width="100" height="20" uuid="a6adc7fa-876f-488b-b19a-1f8c042fa05e"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<text><![CDATA[Bottom Center]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="100" height="20" uuid="fd6b87aa-a865-4af4-8ab8-d6a492a9b2c2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Middle Left]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="454" y="30" width="100" height="20" uuid="edfd4f56-2462-4e98-995e-2b29ac946c14"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Middle Right]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="227" y="10" width="100" height="30" uuid="193e1137-cdf3-453a-b7ac-e394b807a939"/>
+				<text><![CDATA[Page Header]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="230" y="15" width="100" height="30" uuid="d617f54f-3f38-4d3f-aa78-66ad223a32ab"/>
+				<text><![CDATA[Column Header]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="310" splitType="Stretch">
+			<line direction="BottomUp">
+				<reportElement x="0" y="0" width="554" height="310" uuid="e5fa8bd0-ecbc-4888-8cd2-d2344b2d44f6"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement x="240" y="10" width="100" height="40" uuid="1d3665e7-cb22-4acc-806a-e976e8be3cc7"/>
+				<text><![CDATA[Column Footer]]></text>
+			</staticText>
+			<line>
+				<reportElement x="340" y="0" width="114" height="50" uuid="d5f40b2a-7cbb-4faa-ad1d-9968f23b30a5"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="240" y="5" width="100" height="30" uuid="4dad4783-7a0f-46cf-8edf-acf1c5b90f1c"/>
+				<text><![CDATA[Page Footer]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="50">
+			<staticText>
+				<reportElement x="227" y="10" width="100" height="30" uuid="e9a76eac-0003-49af-8624-95e4e3eec72f"/>
+				<text><![CDATA[Last Page Footer]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="336" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="333" width="554" height="1" uuid="f2fdac8f-68d5-4941-bac9-7b304a437bfc">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="72ac353a-b641-4a36-aaac-e932f746bd6e"/>
+				<text><![CDATA[Top Summary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="454" y="300" width="100" height="30" uuid="d6bc0781-21ce-462a-868d-adf1887f0981">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Bottom"/>
+				<text><![CDATA[Bottom Summary]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

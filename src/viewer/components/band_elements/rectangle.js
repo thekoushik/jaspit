@@ -1,5 +1,5 @@
 import React from 'react';
-import {Common} from '../../common';
+import {Common} from '../common';
 
 export default function({design}){
     let attr=design.reportElement._attributes;

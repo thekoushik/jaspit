@@ -3,17 +3,19 @@
 Simple report rendering library based on Jasper Report
 
 # Usage
-```
+```html
 <div id="report"></div>
 
-<script type="text/javascript" src="jaspit.bundle.min.js"></script>
+<script type="text/javascript" src="jaspit-viewer.bundle.min.js"></script>
 <script>
 Jaspit.render({
-	dom_id:"report",
-	fetch:true,//if true, the following two parameters will be taken as URL
-	design:"/invoice.jrxml",
-	data:"/invoice.json",
-	param:{logo1:'/logo.jpg'},
+	dom_id: "report",
+	fetch: "both",//expected values are: ["both", "design", "data"], and anything else will be treated as "none"
+	design: "/invoice.jrxml",//make sure the java expressions are changed to javascript
+	data: "/invoice.json",
+	param:{
+		logo1: '/logo.jpg'
+	},
 	done:function(){//will be called when render is complete
 		//uncomment to print from browser
 		//print();
@@ -29,6 +31,7 @@ Clone this repo, then `npm install`
 
 ## Future plan
 
+- Font and Global Style Support
 - Editor
 - Support for most components
 - CLI

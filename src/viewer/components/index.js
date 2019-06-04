@@ -2,11 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Report from './report';
 
-export default class Loader extends React.Component {
+function fetchAnyway(data,isURL,type){
+    if(!isURL) return Promise.resolve(data);
+    return fetch(data).then(res=>res[type]());
+}
+
+export default class Viewer extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            settings:{convert:true,...props.settings},
+            settings:{
+                convert:true,
+                fetch:null,
+                design:null,
+                data:null,
+                param:null,
+                done:null,
+                ...props.settings
+            },
             param:null,
             design:null,
             data:null,
@@ -23,19 +36,19 @@ export default class Loader extends React.Component {
         };
         this.setState(state)
     }
-    fetchAndInit=()=>{
-        let {design,data,param,convert}=this.state.settings;
-        Promise.all([fetch(design), fetch(data)])
-        .then((res) =>{
-            return Promise.all([res[0][convert?'text':'json'](),res[1].json()]) ;
-        })
-        .then(([xml,json])=> {
-            this.load({design:xml,data:json,param});
-        });
-    }
     init=(settings)=>{
-        if(settings.fetch){
-            this.fetchAndInit();
+        let fetchWhat=settings.fetch;
+        if(fetchWhat && fetchWhat !== 'none'){
+            Promise.all([
+                fetchAnyway(settings.design, (fetchWhat==="both" || fetchWhat==="design"), settings.convert?'text':'json'),
+                fetchAnyway(settings.data, (fetchWhat==="both" || fetchWhat==="data"), 'json')
+            ]).then((res)=>{
+                this.load({
+                    design:res[0],
+                    data:res[1],
+                    param:settings.param
+                })
+            })
         }else{
             this.load(settings);
         }
@@ -52,6 +65,6 @@ export default class Loader extends React.Component {
     }
 }
 
-Loader.propTypes={
+Viewer.propTypes={
     settings:PropTypes.object.isRequired
 }

@@ -1,0 +1,6 @@
+.edit-mode .element:hover{
+    border: 1px dashed #999;
+}
+.edit-mode .element.selected{
+    border: 2px dotted rgb(70, 70, 70);
+}

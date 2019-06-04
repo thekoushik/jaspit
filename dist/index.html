@@ -6,9 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <title>Jaspit Demo</title>
+    <style>
+      @media print{
+        .noprint *{
+          display: none;
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="noprint">
+      <select id="change-design">
+        <option value="invoice">invoice</option>
+        <option value="demo">Demo</option>
+      </select>
+      <button type="button" onclick="print()">Print</button>
+    </div>
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -21,31 +35,38 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script>
+      var options={
+        invoice:{
+          fetch:'both',
+          design:"/examples/invoice.jrxml",
+          data:"/examples/invoice.json",
+          param:{logo1:'/logo.jpg'},
+        },
+        demo:{
+          fetch:'design',
+          design:"/examples/test1.jrxml",
+          param:{logo1:'/logo.jpg'}
+        }
+      }
       window.onload=function(){
-        /** edit **/
-        /*fetch("/invoice.jrxml")
-        .then(function(data){return data.text()})
-        .then(function(jrxml){return Jaspit.convert(jrxml)})
-        .then(function(json){
-          Jaspit.edit({
+        var select=document.getElementById("change-design");
+        function render(val){
+          Jaspit.render({
               dom_id:"root",
-              design:json
+              ...options[val],
+              done:function(){
+                console.log('Done rendering, you may call print here')
+                //uncomment to print from browser
+                //print();
+              }
           })
-        });
-        return;*/
-        /*** view ***/
-        Jaspit.render({
-            dom_id:"root",
-            fetch:true,
-            design:"/invoice.jrxml",
-            data:"/invoice.json",
-            param:{logo1:'/logo.jpg'},
-            done:function(){
-              //uncomment to print from browser
-              //print();
-            }
-        });
+        }
+        select.addEventListener('change',function(e){
+          render(e.target.value);
+        })
+        if(select.value)
+          render(select.value);
       }
     </script>
-  <script type="text/javascript" src="/jaspit.bundle.min.js"></script></body>
+  <script type="text/javascript" src="/jaspit-viewer.bundle.min.js"></script></body>
 </html>

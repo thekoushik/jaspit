@@ -1,6 +1,6 @@
 import React from 'react';
 import bandElements from './band_elements';
-import {Common} from '../common';
+import {Common} from './common';
 
 export default class Band extends React.Component {
     constructor(props){
@@ -9,7 +9,7 @@ export default class Band extends React.Component {
             name:props.name,
             design:props.design,
             data:props.data || Common.data,
-            dataset:props.dataset,
+            dataset:props.dataset || Common.dataset,
             variable:props.variable||{}
         };
     }
@@ -18,7 +18,7 @@ export default class Band extends React.Component {
             name:props.name,
             design:props.design,
             data:props.data|| Common.data,
-            dataset:props.dataset,
+            dataset:props.dataset || Common.dataset,
             variable:props.variable||{}
         });
     }
@@ -36,7 +36,7 @@ export default class Band extends React.Component {
         for(let key in bandElements)
             if(design[key])
                 items.push(this.putBand(key,design[key]))
-        return <div name={name} style={{position:'relative',...style}}>
+        return <div name={name} style={{position:'relative',...style,...(this.props.style||{})}}>
             {items}
         </div>
     }

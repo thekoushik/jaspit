@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './report.css';
-import Band from './band';
+import './editable_report.css';
+import Band from '../../viewer/components/band';
 import { Common } from '../common';
 
 const SECTIONS=[
@@ -19,7 +20,7 @@ export default class EditableReport extends React.Component {
     constructor(props){
         super(props);
         this.state=this.calcState(props);
-        //console.log('jrjson',props.design)
+        console.log('jrjson',props.design)
     }
     calcState=({design,data,param})=>{
         //const height=Number(design.detail.band._attributes.height);
@@ -37,28 +38,32 @@ export default class EditableReport extends React.Component {
     componentWillReceiveProps(props){
         this.setState(this.calcState(props));
     }
+    componentDidMount(){
+        Common.onElementClick=this.onElementClick.bind(this);
+    }
+    componentWillUnmount(){
+        Common.onElementClick=null;
+    }
     onAdjust=(i)=>(data)=>{
         
     }
+    onElementClick=(id,design)=>{
+        Common.elements[id].selected=!Common.elements[id].selected;
+        //Common.elements[id].notify();
+        console.log('click',design);
+    }
     render(){
         let {design}=this.state;
-        return <div className="page-container">
-            {
-                SECTIONS.filter(f=>).map((m,i)=>{
-                    return <div key={i} className="page" style={{...Common.Attr2Style(design),width:'824px'}}>
-                        <Band name="pageHeader" design={design.pageHeader.band} variable={{PAGE_NUMBER:(i+1)}} />
-                        <Band name="columnHeader" design={design.columnHeader.band} variable={{PAGE_NUMBER:(i+1)}} />
-                        <Band name="detail" design={newDetailBandDesign} dataset={m} onAdjust={this.onAdjust(i)} />
-                        <Band name="lastBandName" design={design[lastBandName].band} variable={{PAGE_NUMBER:(i+1)}} />
-                    </div>
-                })
-            }
+        return <div className="page-container edit-mode">
+                <div className="page" style={{...Common.Attr2Style(design),width:'824px'}}>
+                {
+                    SECTIONS.filter(f=>design[f]).map((m,i)=><Band key={i} name={m} design={design[m].band}/>)
+                }
+            </div>
         </div>
     }
 }
-Report.propTypes={
+EditableReport.propTypes={
     design:PropTypes.object.isRequired,
-    data:PropTypes.object,
-    param:PropTypes.object,
     onDone:PropTypes.func
 }
