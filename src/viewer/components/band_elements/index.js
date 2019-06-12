@@ -5,6 +5,8 @@ import image from './image';
 import rectangle from './rectangle';
 import componentElement from './component_element'
 import frame from './frame';
+import switchElement from './switch';
+import caseElement from './case';
 
 export default {
     staticText,
@@ -14,4 +16,6 @@ export default {
     rectangle,
     componentElement,
     frame,
+    "switch":switchElement,
+    "case":caseElement
 }

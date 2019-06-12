@@ -29,9 +29,13 @@ Clone this repo, then `npm install`
 - Run `npm run dev`
 - Then visit [http://localhost:9000](http://localhost:9000/)
 
+# Documentation
+see [documentation.md](documentation.md)
+
 ## Future plan
 
 - Font and Global Style Support
 - Editor
-- Support for most components
+- Support for most components of Jasper Report
+- New components
 - CLI

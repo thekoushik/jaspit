@@ -20,6 +20,7 @@
       <select id="change-design">
         <option value="invoice">invoice</option>
         <option value="demo">Demo</option>
+        <option value="demo2">Switch Demo</option>
       </select>
       <button type="button" onclick="print()">Print</button>
     </div>
@@ -46,6 +47,11 @@
           fetch:'design',
           design:"/examples/test1.jrxml",
           param:{logo1:'/logo.jpg'}
+        },
+        demo2:{
+          fetch:'both',
+          design:"/examples/switch-test.jrxml",
+          data:"/examples/invoice.json"
         }
       }
       window.onload=function(){

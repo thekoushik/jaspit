@@ -19,7 +19,7 @@ export default function({design,data,variable}){
     return <div id={id} className="element textField" style={{...attr,display:'table'}}>
         <p style={{...p_attr,display:'table-cell'}}>
             {
-                Common.edit?design.textFieldExpression._cdata:Common.parseExpr(design.textFieldExpression._cdata,data,{V:variable})
+                Common.parseExpr(design.textFieldExpression._cdata,data,{V:variable})
             }
         </p>
     </div>

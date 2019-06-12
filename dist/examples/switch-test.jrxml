@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 5.5.2  -->
+<!-- 2019-06-05T17:50:06 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db25bfb1-8ac1-4b3b-acfd-97587985f1fb">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="invoice"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<subDataset name="Dataset1" uuid="9d1a2c35-6213-4e99-802b-9728387e765d">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="invoice"/>
+		<queryString language="JSON">
+			<![CDATA[products]]>
+		</queryString>
+		<field name="description" class="java.lang.String">
+			<fieldDescription><![CDATA[product.description]]></fieldDescription>
+		</field>
+	</subDataset>
+	<field name="contact_person1" class="java.lang.String">
+		<fieldDescription><![CDATA[customer_consignee1.contact_person]]></fieldDescription>
+	</field>
+	<field name="contact_person2" class="java.lang.String">
+		<fieldDescription><![CDATA[customer_consignee2.contact_person]]></fieldDescription>
+	</field>
+	<parameter name="logo1" class="java.lang.String" isForPrompting="false"/>
+	<queryString language="JSON">
+		<![CDATA[products]]>
+	</queryString>
+	<pageHeader>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="227" y="10" width="100" height="30" uuid="193e1137-cdf3-453a-b7ac-e394b807a939"/>
+				<text><![CDATA[Page Header]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="230" y="15" width="97" height="30" uuid="d617f54f-3f38-4d3f-aa78-66ad223a32ab"/>
+				<text><![CDATA[Column Header]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="277" splitType="Stretch">
+			<staticText>
+				<reportElement x="230" y="15" width="97" height="30" uuid="d617f54f-3f38-4d3f-aa78-66ad223a32ab"/>
+				<text><![CDATA[Detail Band]]></text>
+			</staticText>
+			<switch>
+				<reportElement x="1" y="40" width="500" height="200" uuid="a97e0b74-23ae-46b8-82b2-b46afe88f1a3"/>
+				<case>
+					<reportElement x="1" y="30" width="500" height="200" uuid="a97e0b74-23ae-46b8-82b2-b46afe88f1a4"/>
+					<textField>
+						<reportElement x="50" y="11" width="430" height="30" uuid="5d00f5ec-ec17-4dd5-aae6-d9461ed8e1d5"/>
+						<textFieldExpression><![CDATA["Contact Person 1: "+$F{contact_person1}]]></textFieldExpression>
+					</textField>
+					<caseExpression><![CDATA[false]]></caseExpression>
+				</case>
+				<case>
+					<reportElement x="1" y="230" width="500" height="200" uuid="a97e0b74-23ae-46b8-82b2-b46afe88f1a6"/>
+					<textField>
+						<reportElement x="50" y="11" width="430" height="30" uuid="5d00f5ec-ec17-4dd5-aae6-d9461ed8e1d7"/>
+						<textFieldExpression><![CDATA["Contact Person 2: "+$F{contact_person2}]]></textFieldExpression>
+					</textField>
+					<caseExpression><![CDATA[true]]></caseExpression>
+				</case>
+			</switch>
+		</band>
+	</detail>
+</jasperReport>

@@ -46,8 +46,10 @@ export const Common={
             let sub=Array.isArray(design.subDataset)?design.subDataset:[design.subDataset];
             Common.subdatasets={};
             sub.forEach(f=>{
-                result[f._attributes.name]={start:0};
-                Common.subdatasets[f._attributes.name]=Common.dataset[f._attributes.name].length || 0;
+                if(Common.dataset[f._attributes.name]){
+                    result[f._attributes.name]={start:0};
+                    Common.subdatasets[f._attributes.name]=Common.dataset[f._attributes.name].length || 0;
+                }
             },{});
         }
         return result;
@@ -69,8 +71,9 @@ export const Common={
     },
     compileData(design,data){
         let result={};
-        if(design.field)
-            design.field.forEach((f)=>{
+        if(design.field){
+            let fields=Array.isArray(design.field)?design.field:[design.field];
+            fields.forEach((f)=>{
                 if(f._attributes){
                     let name=f._attributes.name;
                     //let classname=f._attributes['class'];
@@ -81,6 +84,7 @@ export const Common={
                     }
                 }
             });
+        }
         let params={};
         if(design.parameter)
             (Array.isArray(design.parameter)?design.parameter:[design.parameter]).forEach((f)=>{
