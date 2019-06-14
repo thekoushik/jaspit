@@ -3,7 +3,7 @@ import textField from './text_field';
 import line from './line';
 import image from './image';
 import rectangle from './rectangle';
-import componentElement from './component_element'
+import componentElement from './component_element/index'
 import frame from './frame';
 import switchElement from './switch';
 import caseElement from './case';

@@ -9,17 +9,17 @@ export default function({design,data,variable}){
             p_attr[f]=attr[f];
         }
     });
-    if(design.reportElement && design.reportElement._attributes){
-        if(design.reportElement._attributes.isPrintWhenDetailOverflows==="true")
+    if(design && design.attributes){
+        if(design.attributes.whiteSpaceNowrap==="true")
             p_attr.whiteSpace='nowrap';
-        else if(design.reportElement._attributes.stretchType==="RelativeToTallestObject")
+        else if(design.attributes.stretchType==="RelativeToTallestObject")
             p_attr.whiteSpace='nowrap';
     }
-    let id=design.reportElement._attributes.uuid||String(Math.random()*10000);
+    let id=design.uuid||String(Math.random()*10000);
     return <div id={id} className="element textField" style={{...attr,display:'table'}}>
         <p style={{...p_attr,display:'table-cell'}}>
             {
-                Common.parseExpr(design.textFieldExpression._cdata,data,{V:variable})
+                Common.parseExpr(design.textFieldExpression,data,{V:variable})
             }
         </p>
     </div>

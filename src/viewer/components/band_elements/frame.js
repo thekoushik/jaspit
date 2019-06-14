@@ -9,7 +9,7 @@ export default function({design,data,dataset,variable}){
         if(design[key])
             items.push(makeBand(key,design[key],dataset,data,variable))
     let style={}
-    if(design.reportElement) style=Common.Attr2Style(design.reportElement);
+    if(design.measurement) style=Common.Attr2Style(design.measurement);
     return <div name="frame" style={{position:'relative',...style}}>
         {items}
     </div>

@@ -30,12 +30,11 @@ export default class Band extends React.Component {
     }
     render(){
         let {design,name}=this.state;
-        let style={};
-        if(design._attributes) style=Common.Attr2Style(design);
+        let style=Common.Attr2Style(design);
         let items=[];
-        for(let key in bandElements)
-            if(design[key])
-                items.push(this.putBand(key,design[key]))
+        for(let key in design.elements)
+            if(bandElements[key])
+                items.push(this.putBand(key,design.elements[key]))
         return <div name={name} style={{position:'relative',...style,...(this.props.style||{})}}>
             {items}
         </div>
@@ -46,10 +45,8 @@ export function makeBand(name,design,dataset,data,variable,onAdjust){
     let BandElement=bandElements[name];
     return data_items.map((m,i)=>{
         let printWhenExpression=true;
-        if(m.reportElement){
-            if(m.reportElement.printWhenExpression){
-                printWhenExpression=Boolean(Common.parseExpr(m.reportElement.printWhenExpression._cdata,data,{V:variable}))
-            }
+        if(m.printWhenExpression){
+            printWhenExpression=Boolean(Common.parseExpr(m.printWhenExpression,data,{V:variable}))
         }
         return printWhenExpression?<BandElement key={i} design={m} data={data} dataset={dataset} onAdjust={onAdjust} variable={variable} />:null;
     });

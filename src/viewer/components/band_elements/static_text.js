@@ -9,8 +9,8 @@ export default function({design}){
             p_attr[f]=attr[f];
         }
     });
-    let id=design.reportElement._attributes.uuid||String(Math.random()*10000);
+    let id=design.uuid||String(Math.random()*10000);
     return <div id={id} className="element staticText" style={{...attr,display:'table'}}>
-        <p style={{...p_attr,display:'table-cell'}}>{design.text._cdata}</p>
+        <p style={{...p_attr,display:'table-cell'}}>{design.text}</p>
     </div>
 }

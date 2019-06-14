@@ -8,8 +8,7 @@ export default function({design,data,dataset,variable}){
         caseElements=(Array.isArray(design.case)?design.case:[design.case])
             .map(m=>makeBand('case',m,dataset,data,variable));
     }
-    let style={}
-    if(design.reportElement) style=Common.Attr2Style(design.reportElement);
+    let style=Common.Attr2Style(design);
     return <div name="switch" style={{position:'relative',...style}}>
         {caseElements}
     </div>

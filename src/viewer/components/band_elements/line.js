@@ -3,10 +3,10 @@ import {Common} from '../common';
 
 export default function({design}){
     let direction = true;
-    if(design._attributes && design._attributes.direction==="BottomUp"){
+    if(design.measurement && design.measurement.direction==="BottomUp"){
         direction=false;
     }
-    let style=Common.Attr2Style(design.reportElement);
+    let style=Common.Attr2Style(design);
     
     //return <div className="element line" style={{...Common.Attr2Style(design.reportElement)}}></div>
     let width=style.width.replace("px","");

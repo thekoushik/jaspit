@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {xml2js} from 'xml-js';
 import './index.css';
 import Viewer from './components';
+import converter from './converter';
 
 export function render(settings){
     let element=document.getElementById(settings.dom_id);
@@ -13,11 +13,11 @@ export function render(settings){
             console.warn("Error occured while clearing existing element body, it can be ignored",e)
         }
     }
-    ReactDOM.render(<Viewer settings={settings} converter={convert} />,element)
+    ReactDOM.render(<Viewer settings={settings} converter={converter} />,element)
 }
 
 export function convert(jrxml){
-    return xml2js(jrxml,{compact: true}).jasperReport
+    return converter(jrxml);
 }
 
 // If you want your app to work offline and load faster, you can change

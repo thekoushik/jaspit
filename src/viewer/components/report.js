@@ -8,12 +8,12 @@ import { Common } from './common';
 export default class Report extends React.Component {
     constructor(props){
         super(props);
-        this.state=this.calcState(props);
         //console.log('jrjson',props.design)
+        this.state=this.calcState(props);
     }
     calcState=({design,data,param})=>{
-        Common.RATIO=824/Number(design._attributes.columnWidth);
-        Common.YRATIO=1170/Number(design._attributes.pageHeight);
+        Common.RATIO=824/Number(design.measurement.width);//columnWidth
+        Common.YRATIO=1170/Number(design.measurement.height);//pageHeight
 
         Common.complete=0;
         Common.param=param||{};
@@ -79,8 +79,8 @@ export default class Report extends React.Component {
     render(){
         let {design,pages,lastPageOnlySummary}=this.state;
         let hasLastPageFooter=false;
-        if(design.lastPageFooter!==undefined){
-            if(design.lastPageFooter.band._attributes.height!=="0")
+        if(design.bands.lastPageFooter!==undefined){
+            if(design.bands.lastPageFooter.measurement.height!=="0")
                 hasLastPageFooter=true;
         }
         let pageAttr={className:"page",style:{...Common.Attr2Style(design),width:'824px'}};
@@ -92,11 +92,11 @@ export default class Report extends React.Component {
                         PAGE_NUMBER:(i+1),
                         PAGE_COUNT:pages.length
                     };
-                    let backgroundBand=design.background?<Band name="background" design={design.background.band} style={{position:'absolute',height:pageAttr.style.height}} variable={variable} />:null
+                    let backgroundBand=design.bands.background?<Band name="background" design={design.bands.background} style={{position:'absolute',height:pageAttr.style.height}} variable={variable} />:null
                     if(m==="summary")
                         return <div key={i} {...pageAttr}>
                             { backgroundBand }
-                            <Band ref="summaryBand" name="summary" design={design.summary.band} dataset={m} variable={variable} style={{maxWidth}} />
+                            <Band ref="summaryBand" name="summary" design={design.bands.summary} dataset={m} variable={variable} style={{maxWidth}} />
                         </div>
                     let isFirst=i===0;
                     let lastPageIndex=pages.length-1;
@@ -108,38 +108,38 @@ export default class Report extends React.Component {
                     if(isLast && hasLastPageFooter)
                         lastBandName='lastPageFooter';
                     let columnFooterBottom=0;
-                    let availableHeight=Common.val(design._attributes.pageHeight,true);
-                    if(isFirst && design.title) availableHeight-=Common.val(design.title.band._attributes.height,true);
-                    if(design.pageHeader) availableHeight-=Common.val(design.pageHeader.band._attributes.height,true);
-                    if(design.columnHeader) availableHeight-=Common.val(design.columnHeader.band._attributes.height,true);
-                    if(design.columnFooter) availableHeight-=Common.val(design.columnFooter.band._attributes.height,true);
-                    if(design[lastBandName]){
-                        columnFooterBottom=Common.val(design[lastBandName].band._attributes.height,true);
+                    let availableHeight=Common.val(design.measurement.height,true);
+                    if(isFirst && design.bands.title) availableHeight-=Common.val(design.bands.title.measurement.height,true);
+                    if(design.bands.pageHeader) availableHeight-=Common.val(design.bands.pageHeader.measurement.height,true);
+                    if(design.bands.columnHeader) availableHeight-=Common.val(design.bands.columnHeader.measurement.height,true);
+                    if(design.bands.columnFooter) availableHeight-=Common.val(design.bands.columnFooter.measurement.height,true);
+                    if(design.bands[lastBandName]){
+                        columnFooterBottom=Common.val(design.bands[lastBandName].measurement.height,true);
                         availableHeight-=columnFooterBottom;
                     }
-                    let bottomToAdd=Common.val(design._attributes.bottomMargin,true);
+                    let bottomToAdd=Common.val(design.measurement.paddingBottom,true);
                     return <div key={i} {...pageAttr}>
                         { backgroundBand }
                         {
-                            isFirst && design.title ? <Band name="title" design={design.title.band} variable={variable} style={{maxWidth}} />:null
+                            isFirst && design.bands.title ? <Band name="title" design={design.bands.title} variable={variable} style={{maxWidth}} />:null
                         }
                         {
-                            ["pageHeader","columnHeader"].filter(f=>design[f])
+                            ["pageHeader","columnHeader"].filter(f=>design.bands[f])
                             .map((n,j)=><Band key={j} name={n}
-                                design={design[n].band} dataset={m} variable={variable} onAdjust={this.onAdjust(i)}
+                                design={design.bands[n]} dataset={m} variable={variable} onAdjust={this.onAdjust(i)}
                                 style={{maxWidth}} />)
                         }
                         {
-                            design.detail?<Band {...(isLast?{ ref:"lastPageDetailBand"}:{})} name="detail" design={design.detail.band} dataset={m} variable={variable} onAdjust={this.onAdjust(i)} style={{height:(isLast?this.state.lastPageDetailBandHeight:'auto'),maxHeight:availableHeight+"px",maxWidth}} />:null
+                            design.bands.detail?<Band {...(isLast?{ ref:"lastPageDetailBand"}:{})} name="detail" design={design.bands.detail} dataset={m} variable={variable} onAdjust={this.onAdjust(i)} style={{height:(isLast?this.state.lastPageDetailBandHeight:'auto'),maxHeight:availableHeight+"px",maxWidth}} />:null
                         }
                         {
-                            isLast && design.summary && !lastPageOnlySummary?<Band ref="summaryBand" name="summary" design={design.summary.band} dataset={m} variable={variable} style={{maxWidth}} />:null
+                            isLast && design.bands.summary && !lastPageOnlySummary?<Band ref="summaryBand" name="summary" design={design.bands.summary} dataset={m} variable={variable} style={{maxWidth}} />:null
                         }
                         {
-                            design.columnFooter?<Band name="columnFooter" design={design.columnFooter.band} dataset={m} variable={variable} style={{position:'absolute',width:'100%',bottom:(bottomToAdd+columnFooterBottom)+'px',maxWidth}} />:null
+                            design.bands.columnFooter?<Band name="columnFooter" design={design.bands.columnFooter} dataset={m} variable={variable} style={{position:'absolute',width:'100%',bottom:(bottomToAdd+columnFooterBottom)+'px',maxWidth}} />:null
                         }
                         {
-                            design[lastBandName]?<Band name={lastBandName} design={design[lastBandName].band} variable={variable} style={{position:'absolute',width:'100%',bottom: bottomToAdd+'px',maxWidth}}  />:null
+                            design.bands[lastBandName]?<Band name={lastBandName} design={design.bands[lastBandName]} variable={variable} style={{position:'absolute',width:'100%',bottom: bottomToAdd+'px',maxWidth}}  />:null
                         }
                     </div>
                 })

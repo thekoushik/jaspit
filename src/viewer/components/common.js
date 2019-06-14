@@ -24,33 +24,28 @@ export const Common={
             return "";
         }
     },
-    PXMAP:{
-        pageWidth: {prop:'width', y:false},
-        pageHeight: {prop:'height', y:true},
-        leftMargin: {prop:'paddingLeft', y:false},
-        rightMargin: {prop:'paddingRight', y:false},
-        topMargin: {prop:'paddingTop', y:true},
-        bottomMargin: {prop:'paddingBottom', y:true},
-        height: {prop:'height', y:true},
-        width: {prop:'width', y:false},
-        x: {prop:'left', y:false},
-        y: {prop:'top', y:true},
-    },
-    VALMAP:{
-        textAlignment:'textAlign',
-        verticalAlignment:'verticalAlign'
+    ATTRIBUTE_MAP:{
+        width: { px:true, y:false },
+        height: { px:true, y:true },
+        paddingLeft: { px:true, y:false },
+        paddingRight: { px:true, y:false },
+        paddingTop: { px:true, y:true },
+        paddingBottom: { px:true, y:true },
+        left: { px:true, y:false },
+        top: { px:true, y:true },
+        textAlign: {  },
+        verticalAlign: {  },
     },
     processSubDataSet(design){
         let result={};
+        Common.subdatasets={};
         if(design.subDataset){
-            let sub=Array.isArray(design.subDataset)?design.subDataset:[design.subDataset];
-            Common.subdatasets={};
-            sub.forEach(f=>{
-                if(Common.dataset[f._attributes.name]){
-                    result[f._attributes.name]={start:0};
-                    Common.subdatasets[f._attributes.name]=Common.dataset[f._attributes.name].length || 0;
+            for(let key in design.subDataset){
+                if(Common.dataset[key]){
+                    result[key]={start:0};
+                    Common.subdatasets[key]=Common.dataset[key].length || 0;
                 }
-            },{});
+            }
         }
         return result;
     },
@@ -72,25 +67,19 @@ export const Common={
     compileData(design,data){
         let result={};
         if(design.field){
-            let fields=Array.isArray(design.field)?design.field:[design.field];
-            fields.forEach((f)=>{
-                if(f._attributes){
-                    let name=f._attributes.name;
-                    //let classname=f._attributes['class'];
-                    if(f.fieldDescription){
-                        result[name]=Common.getNestedVal(data,f.fieldDescription._cdata);
-                    }else{
-                        result[name]=data[name]||"";
-                    }
+            design.field.forEach((f)=>{
+                //let classname=f._attributes['class'];
+                if(f.expression){
+                    result[f.name]=Common.getNestedVal(data,f.expression);
+                }else{
+                    result[f.name]=data[f.name]||"";
                 }
             });
         }
         let params={};
         if(design.parameter)
-            (Array.isArray(design.parameter)?design.parameter:[design.parameter]).forEach((f)=>{
-                if(f._attributes){
-                    params[f._attributes.name]=Common.param[f._attributes.name]||"";
-                }
+            design.parameter.forEach((f)=>{
+                params[f.name]=Common.param[f.name]||"";
             });
         return {
             F:result,
@@ -146,41 +135,40 @@ export const Common={
     },
     Attr2Style(data){
         let result={};
-        let attr=data._attributes;
+        let attr=data && data.measurement;
         if(attr){
-            for(let key in Common.PXMAP){
-                if(attr[key]){
-                    let map=Common.PXMAP[key];
-                    result[map.prop]=Common.val(attr[key].toLowerCase(),map.y)+"px";
-                }
-            }
-            for(let key in Common.VALMAP){
-                if(attr[key]){
-                    result[Common.VALMAP[key]]=attr[key].toLowerCase();
+            for(let key in attr){
+                let map=Common.ATTRIBUTE_MAP[key];
+                if(!map) continue;
+                if(map.px){
+                    result[key]=Common.val(attr[key].toLowerCase(),map.y)+"px";
+                }else{
+                    result[key]=attr[key].toLowerCase();
                 }
             }
         }
         return result;
     },
     Font2Style(data){
-        let result={};
-        let attr=data._attributes;
+        let result={...data};
+        if(result.fontSize) result.fontSize=Common.val(result.fontSize);
+        /*let attr=data.attributes;
         if(attr){
-            if(attr.size) result.fontSize=Common.val(attr.size);
-            if(attr.isBold==="true") result.fontWeight="bold";
-    
-        }
+            if(attr.fontSize) result.fontSize=Common.val(attr.fontSize);
+            if(attr.fontWeight) result.fontWeight=attr.fontWeight;
+        }*/
         return result;
     },
     TEXT_ATTR:{
         textElement(data){
-            let result={};
+            return Common.Font2Style(data);
+            /*let result={};
             if(data.font) result={...result,...Common.Font2Style(data.font)};
             if(data._attributes){
                 result={...result,...Common.Attr2Style(data)};
             }
             //if(data.paragraph) 
-            return result;
+            return result;*/
         }
     },
     BOX_ATTR:{
@@ -212,8 +200,8 @@ export const Common={
     },
     putTextAttr(data){
         let result={};
-        if(data.textElement) result={...result,...Common.Attr2Style(data.textElement), ...Common.TEXT_ATTR.textElement(data.textElement)}
-        if(data.reportElement) result={...result,...Common.Attr2Style(data.reportElement)}
+        if(data.textElement) result=Common.TEXT_ATTR.textElement(data.textElement); //result={...result,...Common.Attr2Style(data.textElement), ...Common.TEXT_ATTR.textElement(data.textElement)}
+        if(data.measurement) result={...result,...Common.Attr2Style(data)}
         if(data.box){
             for(let key in data.box) if(Common.BOX_ATTR[key]) result={...result,...Common.BOX_ATTR[key](data.box[key])};
         }
